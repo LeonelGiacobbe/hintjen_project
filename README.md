@@ -12,6 +12,8 @@
         - `web`: Django API exposed on `localhost:8080`
 3) **Apply migrations** with `docker-compose exec web python manage.py migrate`
 
+## Browsable API
+- After running the project,  visit `http://localhost:8000/api/` to enter DRF's browsable API
 
 ## Example USE
 
