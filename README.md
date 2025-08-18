@@ -10,7 +10,6 @@
     - This will start two services: 
         - `db`: PostgreSQL database with persistent volume
         - `web`: Django API exposed on `localhost:8080`
-3) **Apply migrations** with `docker-compose exec web python manage.py migrate`
 
 ## Browsable API
 - After running the project,  visit `http://localhost:8000/api/` to enter DRF's browsable API
@@ -18,36 +17,45 @@
 ## Example USE
 
 ### Create a device / server:
+```bash
 curl -X POST http://localhost:8000/api/devices/ \
      -H "Content-Type: application/json" \
      -d '{"name":"MyFirstDevice"}' 
-
+```
+```bash
 curl -X POST http://localhost:8000/api/servers/ \
      -H "Content-Type: application/json" \
      -d '{"name":"MyFirstServer"}'
-
+```
 ### List servers
+```bash
 curl -X GET http://localhost:8000/api/servers/
-
+```
 ### List a specific server
+```bash
 curl -X GET http://localhost:8000/api/servers/<id>/
-
+```
 ### List devices
+```bash
 curl -X GET http://localhost:8000/api/devices/
+```
 
 ### Update Server status
 To start a server:
+```bash
 curl -X PATCH http://localhost:8000/api/servers/<id>/ \
      -H "Content-Type: application/json" \
      -d '{"status":"starting"}'
+```
 The command above will return "status":"running" if an online device was found,
 else will return "status":"error"
 
 To stop a server:
+```bash
 curl -X PATCH http://localhost:8000/api/servers/<id>/ \
      -H "Content-Type: application/json" \
      -d '{"status":"stopped"}'
-
+```
 
 ## Design choices
 - A package named "api" was created, separate from the overall "server_manager" package.
